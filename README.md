@@ -1,12 +1,15 @@
-# Proyecto del curso de React JS, de CoserHouse - Agustin Trezza
+# Proyecto del curso de React JS, de CoderHouse - Agustin Trezza
 
-El proyecto es un commerce creado con ReactJS, Tailwind, Flowbite y Firebase.
+### El proyecto es un commerce creado con ReactJS, Tailwind, Flowbite y Firebase.
 
-Espero les guste.
+ENLACE AL PROYECTO
+[https://6564028119313961d6a748bd--jolly-churros-b186d0.netlify.app/]
 
-Para correr el proyecto:
+ESPERO LES GUSTE
 
-1- Descargar la carpeta
-2- Posicionarse dentro de la carpeta
-3- Correr el comando 'npm install'
-4- Correr el comando 'npm start'
+## PASOS PARA EJECUTAR EL PROYECTO
+
+* 1 -  Descargar la carpeta del repositorio de Github aquí ().
+* 2 - Abrir la carpeta con Visual Studio Code.
+* 3 - Posicionarse usando la terminal, dentro de la carpeta del proyecto y  ejecutar el comando _**"npm install"**_ para instalar módulos de Node.
+* 4 - Luego ejecutar _**"npm start"**_, para correr el proyecto.
