@@ -1,4 +1,4 @@
-# Proyecto del curso de React JS, de CoderHouse - Agustin Trezza
+# 1era entrega 28/11/2023 - Proyecto del curso de React JS, de CoderHouse - Agustin Trezza
 
 ### El proyecto es un commerce creado con ReactJS, Tailwind, Flowbite y Firebase.
 
