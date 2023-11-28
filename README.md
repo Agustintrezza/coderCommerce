@@ -3,7 +3,7 @@
 ### El proyecto es un commerce creado con ReactJS, Tailwind, Flowbite y Firebase.
 
 ENLACE AL PROYECTO
-[https://6564028119313961d6a748bd--jolly-churros-b186d0.netlify.app/]
+[https://jolly-churros-b186d0.netlify.app/]
 
 ESPERO LES GUSTE
 
