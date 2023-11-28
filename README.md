@@ -1,8 +1,12 @@
-# React + Vite
+# Proyecto del curso de React JS, de CoserHouse - Agustin Trezza
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+El proyecto es un commerce creado con ReactJS, Tailwind, Flowbite y Firebase.
 
-Currently, two official plugins are available:
+Espero les guste.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Para correr el proyecto:
+
+1- Descargar la carpeta
+2- Posicionarse dentro de la carpeta
+3- Correr el comando 'npm install'
+4- Correr el comando 'npm start'
