@@ -1,12 +1,12 @@
-import { createContext, useContext, useEffect, useState } from 'react';
-import PropTypes from 'prop-types';  // Añade esta importación
+import { createContext, useContext, useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
-  onAuthStateChanged
-} from 'firebase/auth';
-import { auth } from '../firebase';
+  onAuthStateChanged,
+} from "firebase/auth";
+import { auth } from "../firebase";
 
 const UserContext = createContext();
 
@@ -22,7 +22,7 @@ export const AuthContextProvider = ({ children }) => {
   };
 
   const logout = () => {
-    localStorage.removeItem('userInfo')
+    localStorage.removeItem("userInfo");
     return signOut(auth);
   };
 
@@ -43,7 +43,6 @@ export const AuthContextProvider = ({ children }) => {
   );
 };
 
-// Añade la validación de PropTypes para children
 AuthContextProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };

@@ -1,11 +1,11 @@
 import { MyCarousel } from '../components/Carousel/Carousel';
-import { Productos } from '../components/Productos/Productos'
+import { ItemList } from '../components/ItemList/ItemList';
 
 const HomeScreen = () => {
   return (
-    <div>
+    <div className="mb-20">
       <MyCarousel/>
-      <Productos/>
+      <ItemList/>
     </div>
   );
 }

@@ -1,44 +1,41 @@
-import { NavLink } from 'react-router-dom';
-import { UserAuth } from '../../context/AuthContext';
-import {Cart} from '../Cart/Cart';
+import { Link, NavLink } from "react-router-dom";
+import { UserAuth } from "../../context/AuthContext";
+import { Cart } from "../Cart/Cart";
 
-import { Avatar, Dropdown, Navbar } from 'flowbite-react';
-import { useMediaQuery } from '@react-hook/media-query';
-
+import { Avatar, Dropdown, Navbar } from "flowbite-react";
+import { useMediaQuery } from "@react-hook/media-query";
 
 export function MyNavbar() {
-
   const { user, logout } = UserAuth();
-  const isScreenAbove768px = useMediaQuery('(min-width: 768px)');
+  const isScreenAbove768px = useMediaQuery("(min-width: 768px)");
 
-  const userEmail = localStorage.getItem('userInfo')
-  
-  
-  
+  const userEmail = localStorage.getItem("userInfo");
+
   return (
-    <Navbar fluid rounded className="p-3 rounded-none sticky top-0 z-10 border-b-2 border-black-600">
+    <Navbar
+      fluid
+      rounded
+      className="p-3 rounded-none sticky top-0 z-10 border-b-2 border-black-600"
+    >
       {isScreenAbove768px ? (
         <Navbar.Brand className="" href="/">
           <span className="w-full text-center whitespace-nowrap text-3xl font-bold text-sky-950">
-            <span className="italic text-yellow-400">
-              CODER {" "}
-            </span>
-            - Commerce
+            <span className="italic text-yellow-400">CODER </span>- Commerce
           </span>
         </Navbar.Brand>
       ) : (
         <Navbar.Brand className="" href="/">
           <span className="w-full flex flex-col text-center whitespace-nowrap text-2xl font-bold text-sky-950">
-            <span className="italic text-start text-sky-950">
-              CODER
-            </span>
+            <span className="italic text-start text-sky-950">CODER</span>
             <span className="italic text-yellow-400">Commerce</span>
           </span>
         </Navbar.Brand>
       )}
 
       <div className="flex md:order-2 items-center gap-10">
-        <Cart />
+        <Link to={"/cart"}>
+          <Cart />
+        </Link>
         <Dropdown
           arrowIcon={true}
           inline
@@ -53,7 +50,7 @@ export function MyNavbar() {
           <Dropdown.Header>
             <span className="block font-bold text-sm">User</span>
             <span className="block truncate text-sm font-medium">
-              {userEmail ? (userEmail) : ('Iniciá Sesión')}
+              {userEmail ? userEmail : "Iniciá Sesión"}
             </span>
           </Dropdown.Header>
           <Dropdown.Item>Mi Cuenta</Dropdown.Item>
@@ -106,6 +103,3 @@ export function MyNavbar() {
     </Navbar>
   );
 }
-
-
-
