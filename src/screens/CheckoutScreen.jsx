@@ -50,18 +50,18 @@ export const CheckoutScreen = () => {
 
 
     useEffect(() => {
-        // Obtenemos userData del localStorage y lo convertimos a objeto
         const storedUserData = localStorage.getItem('userDataOrder');
-        const parsedUserData = JSON.parse(storedUserData);
-        // Actualizamos los estados locales con los valores de userData
-        setEmail(parsedUserData.email || '');
-        setName(parsedUserData.name || '');
-        setTelefono(parsedUserData.telefono || '');
-        setCiudad(parsedUserData.ciudad || '');
-        setPais(parsedUserData.pais || '');
-        setPaymentMethod(paymentMethod || '');
-
-      }, []);
+        
+        if (storedUserData) {
+            const parsedUserData = JSON.parse(storedUserData);
+            setEmail(parsedUserData.email || '');
+            setName(parsedUserData.name || '');
+            setTelefono(parsedUserData.telefono || '');
+            setCiudad(parsedUserData.ciudad || '');
+            setPais(parsedUserData.pais || '');
+            setPaymentMethod(parsedUserData.paymentMethod || '');
+        }
+    }, []);
 
   return (
     <div>
