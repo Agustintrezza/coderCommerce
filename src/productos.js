@@ -167,7 +167,7 @@ const productos = [
       "Experimenta una calidad excepcional con los palos de batería Vic Firth 5A. Diseñados para satisfacer las demandas de los bateristas profesionales.",
     breveDescripcion:
       "La elección preferida de músicos exigentes en todo el mundo.",
-    precio: 15.99,
+    precio: 15,
     stock: 100,
     informacion: [
       "Modelo estándar 5A.",

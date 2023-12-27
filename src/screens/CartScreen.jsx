@@ -28,13 +28,21 @@ const CartScreen = () => {
 
   const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
 
+  console.log(cart.length)
+
   return (
     <div>
       <div className="py-1 custom-container-80">
         <h1 className=" text-5xl font-semibold text-sky-950 mt-4">Carrito</h1>
       </div>
       <div className="grid-custom-cart">
-        <div>
+      
+        {cart.length === 0 ? (
+          <div className="bg-blue-600 text-white text-lg font-semibold p-4 rounded">
+            <p>No hay productos agregados al carrito.</p>
+          </div>
+        ) : (
+          <div>
           {cart.map((item) => (
             <div
               key={item.id}
@@ -104,6 +112,9 @@ const CartScreen = () => {
             </div>
           ))}
         </div>
+        )}
+
+        
 
         <div>
           <div className="flex flex-col justify-center gap-3 items-center border p-4">
@@ -118,8 +129,8 @@ const CartScreen = () => {
               </h1>
             </div>
             <Link to={"/checkout"} className="w-full">
-              <button className="text-xl font-medium bg-blue-600 hover:bg-blue-500 dark:bg-yellow-500 w-full p-3 my-2 text-white rounded">
-                Proceed to Ckeckout
+              <button disabled={cart.length === 0} className="text-xl font-medium bg-blue-600 hover:bg-blue-500 dark:bg-yellow-500 w-full p-3 my-2 text-white rounded">
+                Ir al Ckeckout
               </button>
             </Link>
           </div>
