@@ -13,9 +13,14 @@ import { CheckoutScreen } from './screens/CheckoutScreen.jsx';
 import { PaymentScreen } from './screens/PaymentScreen.jsx';
 import { ItemDetails } from './components/ItemDetails/ItemDetails.jsx';
 import { PlaceOrderScreen } from './screens/PlaceOrderScreen.jsx';
+import CategoriasScreen from './screens/CategoriasScreen.jsx';
+import 'react-tippy/dist/tippy.css'
+
 
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { OrderScreen } from './screens/OrderScreen.jsx';
+import { OrdersScreen } from './screens/OrdersScreen.jsx';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -39,9 +44,13 @@ function App() {
                 <Route path='/signin' element={<SigninScreen/>} />
                 <Route path='/cart' element={<CartScreen/>} />
                 <Route path='/checkout' element={<CheckoutScreen/>} />
+                <Route path='/order/:id' element={<OrderScreen/>} />
+                <Route path='/orders' element={<OrdersScreen/>} />
                 <Route path='/payment' element={<PaymentScreen/>} />
                 <Route path='/place-order' element={<PlaceOrderScreen/>} />
                 <Route path="/producto/:slug" element={<ItemDetails />} />
+                <Route path='/categorias/:categoria' element={<CategoriasScreen />} />
+
 
                 <Route path="/" element={<HomeScreen/>}></Route>
             </Routes>

@@ -33,6 +33,10 @@ const cartReducer = (state, action) => {
       return updatedState;
     }
 
+    case "RESET_CART":
+      saveCartToLocalStorage([]); 
+      return [];
+
     default:
       return state;
   }

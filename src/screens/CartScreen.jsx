@@ -3,7 +3,6 @@ import { useCart } from "../context/CartContext";
 import { MdDeleteSweep } from "react-icons/md";
 
 const CartScreen = () => {
-  // const navigate = useNavigate();
   const { cart, dispatch } = useCart();
 
   const updateCartHandler = (item, newQuantity) => {
@@ -13,7 +12,7 @@ const CartScreen = () => {
         payload: { slug: item.slug, quantity: newQuantity },
       });
     } else {
-      window.alert("No se pueden agregar más cantidades de este producto");
+      window.alert("No es posible asignar una cantidad menor a 1 de este producto.");
     }
   };
 

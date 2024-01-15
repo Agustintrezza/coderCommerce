@@ -1,11 +1,9 @@
 import {useState, useEffect} from 'react'
 import { useNavigate } from 'react-router-dom'
-// import {UserAuth} from '../context/AuthContext';
 import swal from 'sweetalert'
 
 export const CheckoutScreen = () => {
 
-    // const [userData, setUserData] = useState({});
     const storedUserData = localStorage.getItem('userDataOrder');
     const initialPaymentMethod = storedUserData ? JSON.parse(storedUserData).paymentMethod || '' : '';
 
@@ -18,7 +16,6 @@ export const CheckoutScreen = () => {
     const [error, setError] = useState('');
     const [paymentMethod, setPaymentMethod] = useState(initialPaymentMethod);
 
-    // const {createUser} = UserAuth();
     const navigate = useNavigate()
 
     const userData = {

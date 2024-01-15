@@ -1,13 +1,15 @@
 import { useCart } from "../context/CartContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 import { useState, useEffect } from "react";
 import { MdEdit } from "react-icons/md";
 import { FaPaypal } from "react-icons/fa";
 import { SiMercadopago } from "react-icons/si";
 import { FaCreditCard } from "react-icons/fa";
+import { getFirestore, collection, addDoc } from 'firebase/firestore';
 
 export const PlaceOrderScreen = () => {
-  const { cart } = useCart();
+  const { cart, dispatch } = useCart();
+  const navigate = useNavigate();
 
   const [userData, setUserData] = useState({});
 
@@ -15,6 +17,11 @@ export const PlaceOrderScreen = () => {
     (total, item) => total + item.precio * item.quantity,
     0
   );
+
+  // Función para resetear el carrito
+  const resetCart = () => {
+    dispatch({ type: "RESET_CART" });
+  };
 
   const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
 
@@ -24,6 +31,41 @@ export const PlaceOrderScreen = () => {
       setUserData(JSON.parse(storedUserData));
     }
   }, []);
+
+  const handlePlaceOrder = async (e) => {
+    e.preventDefault()
+    const orderData = {
+      user: userData ? { ...userData } : null,
+      items: cart.map((item) => ({
+        categoria: item.categoria, 
+        nombre: item.nombre, 
+        precio: item.precio, 
+        stock: item.stock, 
+        img: item.imagen,
+        quantity: item.quantity, 
+        slug: item.slug,
+      })),
+      totalPrices: totalPrices,
+      date: new Date().toISOString(),
+    };
+
+    console.log('orderData:', orderData);
+
+    const db = getFirestore();
+    
+    try {
+      const docRef = await addDoc(collection(db, 'ordenes'), orderData);
+      console.log('Orden creada con ID: ', docRef.id);
+
+      localStorage.removeItem('itemsCart');
+      localStorage.removeItem('userDataOrder');
+      resetCart();
+      navigate('/orders');
+    } catch (error) {
+      console.log('orderData:', orderData);
+      console.error('Error al crear la orden', error);
+    }
+  };
 
   return (
     <div>
@@ -181,8 +223,8 @@ export const PlaceOrderScreen = () => {
           <div>
             {userData.paymentMethod === "PayPal" && (
               <div>
-                <Link to={"/checkout"} className="w-full">
-                  <button className="flex items-center justify-center h-16 gap-3 text-xl bg-amber-400 hover:bg-yellow-500 dark:bg-yellow-500 w-full p-3 my-2 font-semibold text-black italic rounded">
+                <Link to={"/order"} className="w-full">
+                  <button onClick={handlePlaceOrder} className="flex items-center justify-center h-16 gap-3 text-xl bg-amber-400 hover:bg-yellow-500 dark:bg-yellow-500 w-full p-3 my-2 font-semibold text-black italic rounded">
                     <FaPaypal className="h-7 w-7 text-sky-950" /> PayPal
                   </button>
                 </Link>
@@ -191,8 +233,8 @@ export const PlaceOrderScreen = () => {
 
             {userData.paymentMethod === "Mercado Pago" && (
               <div>
-                <Link to={"/checkout"} className="w-full">
-                  <button className="flex items-center justify-center gap-3 h-16 text-xl bg-sky-400 w-full p-3 my-2 text-white rounded font-semibold">
+                <Link to={"/order"} className="w-full">
+                  <button onClick={handlePlaceOrder} className="flex items-center justify-center gap-3 h-16 text-xl bg-sky-400 w-full p-3 my-2 text-white rounded font-semibold">
                     <SiMercadopago className="text-sky-950 h-9 w-9" /> Mercado
                     Pago
                   </button>
@@ -202,8 +244,8 @@ export const PlaceOrderScreen = () => {
 
             {userData.paymentMethod === "Transferencia/Depósito" && (
               <div>
-                <Link to={"/checkout"} className="w-full">
-                  <button className="flex items-center justify-center gap-3 h-16 text-xl font-medium bg-blue-600 hover:bg-blue-500 dark:bg-yellow-500 w-full p-3 my-2 text-white rounded">
+                <Link to={"/"} className="w-full">
+                  <button onClick={handlePlaceOrder} className="flex items-center justify-center gap-3 h-16 text-xl font-medium bg-blue-600 hover:bg-blue-500 dark:bg-yellow-500 w-full p-3 my-2 text-white rounded">
                     <FaCreditCard className="text-sky-950 h-9 w-9" /> Credit /
                     Debit card
                   </button>

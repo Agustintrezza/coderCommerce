@@ -2,7 +2,7 @@ import { Footer } from 'flowbite-react';
 
 export const MyFooter = () => {
   return (
-    <Footer container className='rounded-none'>
+    <Footer container className='rounded-none bottom-0'>
       <div className="w-full text-center">
         <div className="w-full justify-between sm:flex sm:items-center sm:justify-between">
           <h1 className="text-yellow-400 text-2xl font-bold">Agustin Trezza</h1>

@@ -54,13 +54,14 @@ export const PaymentScreen = () => {
             <div className="flex items-center gap-2">
               <Radio
                 className="cursor-pointer"
-                id="germanys"
-                name="paypal"
+                id="paypal"
+                name="payment"
                 value="PayPal"
                 checked={paymentMethodName === "PayPal"}
                 onChange={() => setPaymentMethod("PayPal")}
+                required
               />
-              <Label className="text-xl cursor-pointer" htmlFor="germanys">
+              <Label className="text-xl cursor-pointer" htmlFor="paypal">
                 PayPal
               </Label>
             </div>
@@ -68,13 +69,13 @@ export const PaymentScreen = () => {
             <div className="flex items-center gap-2">
               <Radio
                 className="cursor-pointer"
-                id="germany"
+                id="mercadoPago"
                 name="payment"
                 value="Mercado Pago"
                 checked={paymentMethodName === "Mercado Pago"}
                 onChange={() => setPaymentMethod("Mercado Pago")}
               />
-              <Label className="text-xl cursor-pointer" htmlFor="germany">
+              <Label className="text-xl cursor-pointer" htmlFor="mercadoPago">
                 Mercado Pago
               </Label>
             </div>
@@ -82,13 +83,13 @@ export const PaymentScreen = () => {
             <div className="flex items-center gap-2">
               <Radio
                 className="cursor-pointer"
-                id="spain"
+                id="transferencia"
                 name="payment"
                 value="Transferencia/Depósito"
                 checked={paymentMethodName === "Transferencia/Depósito"}
                 onChange={() => setPaymentMethod("Transferencia/Depósito")}
               />
-              <Label className="text-xl cursor-pointer" htmlFor="spain">
+              <Label className="text-xl cursor-pointer" htmlFor="transferencia">
                 Transferencia o depósito
               </Label>
             </div>

@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { UserAuth } from "../../context/AuthContext";
 import { Cart } from "../Cart/Cart";
 
@@ -10,6 +10,12 @@ export function MyNavbar() {
   const isScreenAbove768px = useMediaQuery("(min-width: 768px)");
 
   const userEmail = localStorage.getItem("userInfo");
+
+  const navigate = useNavigate();
+
+  const handleCategoriaClick = (categoria) => {
+    navigate(`/categorias/${categoria}`);
+  };
 
   return (
     <Navbar
@@ -61,7 +67,7 @@ export function MyNavbar() {
         </Dropdown>
         <Navbar.Toggle />
       </div>
-      <Navbar.Collapse>
+      <Navbar.Collapse classNam="flex items-center">
         <NavLink
           className={`clase-link ${
             isScreenAbove768px ? "dark:text-white" : ""
@@ -70,7 +76,7 @@ export function MyNavbar() {
           activeClassName="active"
           exact
         >
-          Inicio
+          Home
         </NavLink>
         <NavLink
           className={`clase-link ${
@@ -96,9 +102,26 @@ export function MyNavbar() {
             </span>
           )}
         </NavLink>
+
         <NavLink className="clase-link" to="/signup" activeClassName="active">
           Sign Up
         </NavLink>
+
+        <div className="">
+        <Dropdown color="blue" label="Categorías" dismissOnClick={false}>
+          <Dropdown.Item onClick={() => handleCategoriaClick("baterias")}>Baterías</Dropdown.Item>
+          <Dropdown.Item onClick={() => handleCategoriaClick("guitarras")}>Guitarras</Dropdown.Item>
+          <Dropdown.Item onClick={() => handleCategoriaClick("bajos")}>Bajos</Dropdown.Item>
+          <Dropdown.Item onClick={() => handleCategoriaClick("metales")}>Metales</Dropdown.Item>
+          <Dropdown.Item onClick={() => handleCategoriaClick("audio")}>Audio</Dropdown.Item>
+          <Dropdown.Item onClick={() => handleCategoriaClick("accesorios")}>Accesorios</Dropdown.Item>
+        </Dropdown>
+      </div>
+        
+        <NavLink className="clase-link" to="/orders" activeClassName="active">
+          Órdenes
+        </NavLink>
+              
       </Navbar.Collapse>
     </Navbar>
   );

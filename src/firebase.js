@@ -1,12 +1,10 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-// import { getAnalytics } from "firebase/analytics";
-import {getAuth} from 'firebase/auth'
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import { getAuth } from 'firebase/auth';
+import { getFirestore, collection } from 'firebase/firestore';
+// import { addDoc } from 'firebase/firestore';
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+// import productos from '../src/productos';
+
 const firebaseConfig = {
   apiKey: "AIzaSyAspIaACto_JDKC21Eoi63piwnWMxY7wNc",
   authDomain: "fir-auth-c901e.firebaseapp.com",
@@ -17,9 +15,29 @@ const firebaseConfig = {
   measurementId: "G-B1N9MB3TLB"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
-// const analytics = getAnalytics(app);
+const db = getFirestore(app);
+const productosRef = collection(db, 'productos');
+const ordenesRef = collection(db, 'ordenes');
 
-export default app
+export const auth = getAuth(app);
+
+// const agregarProductosAFirestore = async () => {
+//   try {
+//     for (const item of productos) {
+//       const itemSinId = { ...item };
+//       delete itemSinId.id;
+
+//       const docRef = await addDoc(productosRef, itemSinId);
+//       console.log("Documento agregado con ID:", docRef.id);
+//     }
+//     console.log("Todos los productos han sido agregados correctamente.");
+//   } catch (error) {
+//     console.error("Error al agregar productos:", error);
+//   }
+// };
+
+export { getFirestore, productosRef, ordenesRef , db };
+// agregarProductosAFirestore();
+
+export default app;
