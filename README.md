@@ -9,7 +9,7 @@ ENLACE AL PROYECTO
 [https://jolly-churros-b186d0.netlify.app/]
 
 
-## PASOS PARA EJECUTAR EL PROYECTO
+## PASOS PARA EJECUTAR EL PROYECTO -
 
 * 1 -  Descargar la carpeta del repositorio de Github aquí ().
 * 2 - Abrir la carpeta con Visual Studio Code.
