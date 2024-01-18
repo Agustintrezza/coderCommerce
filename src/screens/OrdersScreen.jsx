@@ -18,6 +18,11 @@ export const OrdersScreen = () => {
         const ordersCollection = collection(db, 'ordenes');
         const ordersSnapshot = await getDocs(ordersCollection);
         const ordersData = ordersSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+
+        ordersData.forEach(order => {
+          order.createdAt = new Date(order.date);
+        });
+        ordersData.sort((a, b) => b.createdAt - a.createdAt);
         setOrders(ordersData);
       } catch (error) {
         console.error('Error fetching orders:', error);
@@ -27,6 +32,7 @@ export const OrdersScreen = () => {
 
     fetchOrders();
   }, []);
+
 
   const eliminarOrden = async (orderId) => {
     try {
@@ -55,13 +61,21 @@ export const OrdersScreen = () => {
             </div>
           </div>
           <div className="">
-            <Table className="mb-10" hoverable>
+
+            {orders.length === 0 ? (
+              <div className="bg-blue-600 w-full text-white flex text-lg font-semibold p-4 rounded">
+              <p className="w-full flex">Aún no hay órdenes creadas en el sitio. <a className="underline ms-4" href="/">¡Creá una aquí!</a></p>
+            </div>
+            ): (
+              <div className="contenedor-tabla-overflow">
+              <Table className="mb-10" hoverable>
               <Table.Head>
                 <Table.HeadCell>Orden ID</Table.HeadCell>
                 <Table.HeadCell>USUARIO</Table.HeadCell>
                 <Table.HeadCell>FECHA</Table.HeadCell>
-                <Table.HeadCell>Items</Table.HeadCell>
+                <Table.HeadCell className="text-center">Items</Table.HeadCell>
                 <Table.HeadCell>TOTAL</Table.HeadCell>
+                <Table.HeadCell>ACCIONES</Table.HeadCell>
                 <Table.HeadCell>
                   <span className="sr-only">Edit</span>
                 </Table.HeadCell>
@@ -126,6 +140,9 @@ export const OrdersScreen = () => {
                 ))}
               </Table.Body>
             </Table>
+            </div>
+            )}
+            
           </div>
         </div>
       )}

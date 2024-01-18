@@ -84,7 +84,7 @@ export const PlaceOrderScreen = () => {
 
       <div className="grid-custom-cart">
         <div>
-          <div className="border flex-col rounded mb-4 p-4 flex space-x-4 shadow-md">
+          <div className="border flex-col rounded mb-4 p-4 flex shadow-md">
             <div className="flex justify-between items-center my-1">
               <div>
                 <h1 className="text-xl mb-2 font-semibold">
@@ -97,7 +97,7 @@ export const PlaceOrderScreen = () => {
                 </Link>
               </div>
             </div>
-            <div className="flex justify-between items-center">
+            <div className="flex flex-col md:flex-row md:ms-0 justify-between items-center">
               <div>
                 <div className="flex">
                   <p className="font-semibold">Nombre: </p>
@@ -126,7 +126,7 @@ export const PlaceOrderScreen = () => {
             </div>
           </div>
 
-          <div className="border rounded mb-4 mt-6 p-4 flex flex-col space-x-4 shadow-md">
+          <div className="border rounded mb-4 mt-6 p-4 flex flex-col shadow-md">
             <div className="flex justify-between items-center my-1">
               <div>
                 <h1 className="text-xl mb-2 font-semibold">Método de Pago</h1>
@@ -145,7 +145,7 @@ export const PlaceOrderScreen = () => {
             </div>
           </div>
 
-          <div className="border rounded mb-4 p-4 flex flex-col space-x-4 shadow-md">
+          <div className="border rounded mb-4 p-4 flex flex-col shadow-md">
             <div className="flex justify-between items-center my-2">
               <div>
                 <h1 className="text-xl mb-2 font-semibold">
@@ -162,7 +162,7 @@ export const PlaceOrderScreen = () => {
             {cart.map((item) => (
               <div
                 key={item.id}
-                className="border rounded mb-4 p-4 flex space-x-4 shadow-md"
+                className="border rounded mb-4 p-4 flex shadow-md"
               >
                 <div>
                   <Link>

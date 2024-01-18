@@ -27,10 +27,8 @@ const CartScreen = () => {
 
   const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
 
-  console.log(cart.length)
-
   return (
-    <div>
+    <div className="contenedor-general-cart">
       <div className="py-1 custom-container-80">
         <h1 className=" text-5xl font-semibold text-sky-950 mt-4">Carrito</h1>
       </div>
@@ -38,16 +36,16 @@ const CartScreen = () => {
       
         {cart.length === 0 ? (
           <div className="bg-blue-600 text-white text-lg font-semibold p-4 rounded">
-            <p>No hay productos agregados al carrito.</p>
+            <p className="w-full flex">No hay productos agregados al carrito. <a className="underline ms-4" href="/">¡Agregar!</a></p>
           </div>
         ) : (
-          <div>
+          <div className="w-full">
           {cart.map((item) => (
             <div
               key={item.id}
-              className="border rounded mb-4 p-4 flex items-center space-x-4 shadow-md"
+              className="contenedor-item-cart border rounded mb-4 p-4 flex items-center space-x-4 shadow-md"
             >
-              <Link>
+              <Link className="mt-4">
                 <img
                   src={item.imagen}
                   alt={item.nombre}
@@ -55,7 +53,7 @@ const CartScreen = () => {
                 />
               </Link>
 
-              <div className="flex-1">
+              <div className="flex-1 mt-3">
                 <Link
                   to={`/producto/${item.slug}`}
                   className="text-xl font-semibold tracking-tight text-blue-500 dark:text-white hover:underline"
@@ -80,7 +78,7 @@ const CartScreen = () => {
                   </span>
                 </div>
               </div>
-              <div className="flex items-center">
+              <div className="flex items-center mt-3">
                 <button
                   className="border p-1 rounded bg-transparent w-8 hover:bg-slate-100 shadow-md"
                   onClick={() => updateCartHandler(item, item.quantity - 1)}
@@ -115,7 +113,7 @@ const CartScreen = () => {
 
         
 
-        <div>
+        <div className="w-full mt-10 md:mt-0">
           <div className="flex flex-col justify-center gap-3 items-center border p-4">
             <div>
               <h1 className="text-3xl text-sky-950">

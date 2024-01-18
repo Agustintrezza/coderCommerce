@@ -20,7 +20,7 @@ export const ItemList = () => {
   };
 
   const handleCardClick = (slug) => {
-    console.log('Navigating to:', `/producto/${slug}`);
+    // console.log('Navigating to:', `/producto/${slug}`);
     navigate(`/producto/${slug}`);
   };
 
@@ -42,7 +42,7 @@ export const ItemList = () => {
         const productosData = productosSnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
         setProductos(productosData);
       } catch (error) {
-        console.error('Error al obtener los productos', error);
+        // console.error('Error al obtener los productos', error);
       } finally {
         setLoading(false);
       }
@@ -54,7 +54,7 @@ export const ItemList = () => {
   return (
     <div className="custom-container min-h-screen">
       <div className="">
-        <h1 className="text-4xl font-bold text-sky-950">PRODUCTOS</h1>
+        <h1 className="text-5xl md:text-4xl text-center md:text-start font-bold text-sky-950">PRODUCTOS</h1>
       </div>
       {loading ? (
         <div className="flex flex-col items-center justify-center h-screen">

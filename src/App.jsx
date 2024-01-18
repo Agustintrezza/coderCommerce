@@ -15,6 +15,7 @@ import { ItemDetails } from './components/ItemDetails/ItemDetails.jsx';
 import { PlaceOrderScreen } from './screens/PlaceOrderScreen.jsx';
 import CategoriasScreen from './screens/CategoriasScreen.jsx';
 import 'react-tippy/dist/tippy.css'
+// import 'flowbite-react/dist/index.css';
 
 
 import { useEffect } from 'react';
@@ -35,8 +36,8 @@ function ScrollToTop() {
 function App() {
   return (
     <>
-    <AuthContextProvider>
     <CartProvider>
+    <AuthContextProvider>
       <ScrollToTop />
         <MyNavbar />
             <Routes>
@@ -55,8 +56,9 @@ function App() {
                 <Route path="/" element={<HomeScreen/>}></Route>
             </Routes>
         <MyFooter />
-        </CartProvider>
     </AuthContextProvider>
+    </CartProvider>
+
     </>
   );
 }

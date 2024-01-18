@@ -34,11 +34,11 @@ export const PaymentScreen = () => {
   }, []);
 
   return (
-    <div className="flex justify-center items-center">
-      <div className="flex flex-col justify-center w-[500px] items-center h-[60vh]">
-        <div className="flex justify-between">
-          <div className="w-[500px]">
-            <h1 className="text-4xl text-center sm:text-start font-bold pb-2 text-sky-950 mb-8">
+    <div className="flex justify-center items-center p-4">
+      <div className="flex flex-col justify-center w-full md:w-[500px] items-center h-[60vh]">
+        <div className="flex justify-between w-full">
+          <div className="w-full md:w-[500px]">
+            <h1 className="text-4xl sm:text-start font-bold pb-2 text-sky-950 mb-8">
               Método de Pago
             </h1>
           </div>
@@ -49,8 +49,8 @@ export const PaymentScreen = () => {
           </div>
         </div>
 
-        <form onSubmit={handleSubmit}>
-          <fieldset className="flex flex-col w-[500px] gap-4">
+        <form onSubmit={handleSubmit} className="w-full">
+          <fieldset className="flex flex-col w-full md:w-[500px] gap-4">
             <div className="flex items-center gap-2">
               <Radio
                 className="cursor-pointer"
@@ -94,10 +94,10 @@ export const PaymentScreen = () => {
               </Label>
             </div>
 
-            <div className="flex justify-end w-[500px]">
+            <div className="flex justify-end w-full md:w-[500px]">
               <button
                 type="submit"
-                className="text-xl font-medium bg-blue-600 hover:bg-blue-500 dark:bg-yellow-500 w-4/12 p-3 my-2 text-white rounded"
+                className="text-xl mt-4 md:mt-0 font-medium bg-blue-600 hover:bg-blue-500 dark:bg-yellow-500 w-4/12 p-3 my-2 text-white rounded"
               >
                 Continuar
               </button>

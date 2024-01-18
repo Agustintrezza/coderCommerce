@@ -29,7 +29,6 @@ export const CheckoutScreen = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        console.log(name, email, telefono, ciudad, pais)
         setError('')
         try {
             navigate('/payment')

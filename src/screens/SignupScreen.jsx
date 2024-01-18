@@ -16,7 +16,7 @@ const SignupScreen = () => {
         setError('')
         try {
             await createUser(email, password)
-            navigate('/login')
+            navigate('/signin')
         } catch (e) {
             setError(e.message)
             console.log(error)

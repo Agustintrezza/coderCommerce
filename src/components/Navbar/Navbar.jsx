@@ -1,17 +1,24 @@
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { UserAuth } from "../../context/AuthContext";
 import { Cart } from "../Cart/Cart";
-
-import { Avatar, Dropdown, Navbar } from "flowbite-react";
+import { Dropdown, Navbar, Avatar } from "flowbite-react";
 import { useMediaQuery } from "@react-hook/media-query";
+import { useState } from "react";
+
 
 export function MyNavbar() {
   const { user, logout } = UserAuth();
-  const isScreenAbove768px = useMediaQuery("(min-width: 768px)");
+  const isScreenAbove968px = useMediaQuery("(min-width: 968px)");
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+
+  const navigate = useNavigate();
 
   const userEmail = localStorage.getItem("userInfo");
 
-  const navigate = useNavigate();
+  const handleMenuToggle = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
   const handleCategoriaClick = (categoria) => {
     navigate(`/categorias/${categoria}`);
@@ -23,7 +30,7 @@ export function MyNavbar() {
       rounded
       className="p-3 rounded-none sticky top-0 z-10 border-b-2 border-black-600"
     >
-      {isScreenAbove768px ? (
+      {isScreenAbove968px ? (
         <Navbar.Brand className="" href="/">
           <span className="w-full text-center whitespace-nowrap text-3xl font-bold text-sky-950">
             <span className="italic text-yellow-400">CODER </span>- Commerce
@@ -38,78 +45,89 @@ export function MyNavbar() {
         </Navbar.Brand>
       )}
 
-      <div className="flex md:order-2 items-center gap-10">
+      <div className="flex md:order-2 items-center gap-6">
         <Link to={"/cart"}>
           <Cart />
         </Link>
-        <Dropdown
+
+        {user ? (
+          <Dropdown
           arrowIcon={true}
           inline
           label={
             <Avatar
               alt="User settings"
-              img="https://res.cloudinary.com/djpifu0cl/image/upload/v1700773114/agusbata_bkqoxz.jpg"
+              img="https://res.cloudinary.com/djpifu0cl/image/upload/v1701584441/buddhabyn_ybmxfw.webp"
               rounded
             />
           }
         >
-          <Dropdown.Header>
-            <span className="block font-bold text-sm">User</span>
-            <span className="block truncate text-sm font-medium">
-              {userEmail ? userEmail : "Iniciá Sesión"}
-            </span>
-          </Dropdown.Header>
-          <Dropdown.Item>Mi Cuenta</Dropdown.Item>
-          <Dropdown.Item>Órdenes</Dropdown.Item>
-          <Dropdown.Item>Dashbord</Dropdown.Item>
-          <Dropdown.Divider />
-          <Dropdown.Item>Cerrar Sesión</Dropdown.Item>
+      <Dropdown.Item as="a" href="https://flowbite.com/" target="_blank">
+        {userEmail && (<p>User: {userEmail}</p>)}
+      </Dropdown.Item>
         </Dropdown>
-        <Navbar.Toggle />
+        ) : (
+        <img className="rounded-full h-10 w-10 me-4" src="https://res.cloudinary.com/djpifu0cl/image/upload/v1701584441/buddhabyn_ybmxfw.webp"/>
+        )}
+
+        
+        
+        
+        <Navbar.Toggle onClick={handleMenuToggle} />
       </div>
-      <Navbar.Collapse classNam="flex items-center">
+      <>
+      <Navbar.Collapse className={`flex items-center ${isMenuOpen ? "block transition-all duration-300 ease-in-out" : "hidden"} md:flex`}>
         <NavLink
           className={`clase-link ${
-            isScreenAbove768px ? "dark:text-white" : ""
+            isScreenAbove968px ? "dark:text-white" : ""
           }`}
           to="/"
-          activeClassName="active"
-          exact
+          activeclassname="active"
+          exact={true.toString()}
         >
           Home
         </NavLink>
+
+        
+        <NavLink className="clase-link" to="/orders" activeclassname="active">
+          Órdenes
+        </NavLink>
+
         <NavLink
           className={`clase-link ${
-            isScreenAbove768px ? "dark:text-white" : ""
+            isScreenAbove968px ? "dark:text-white" : ""
           }`}
           to="/signin"
-          activeClassName="active"
+          activeclassname="active"
         >
           {user ? (
             <button
-              className={`${isScreenAbove768px ? "dark:text-white" : ""}`}
+              className={`${isScreenAbove968px ? "dark:text-white" : ""}`}
               onClick={logout}
             >
-              LogOut
+              Cerrar Sesión
             </button>
           ) : (
             <span
               className={`clase-link ${
-                isScreenAbove768px ? "dark:text-white" : ""
+                isScreenAbove968px ? "dark:text-white" : ""
               }`}
             >
               Sign In
             </span>
           )}
         </NavLink>
-
-        <NavLink className="clase-link" to="/signup" activeClassName="active">
+        
+        {!user && (
+          <NavLink className="clase-link" to="/signup" activeclassname="active">
           Sign Up
         </NavLink>
 
-        <div className="">
+        )}
+
+<div className="flex justify-center mt-2 md:m-0">
         <Dropdown color="blue" label="Categorías" dismissOnClick={false}>
-          <Dropdown.Item onClick={() => handleCategoriaClick("baterias")}>Baterías</Dropdown.Item>
+          <Dropdown.Item className="text-center" onClick={() => handleCategoriaClick("baterias")}>Baterías</Dropdown.Item>
           <Dropdown.Item onClick={() => handleCategoriaClick("guitarras")}>Guitarras</Dropdown.Item>
           <Dropdown.Item onClick={() => handleCategoriaClick("bajos")}>Bajos</Dropdown.Item>
           <Dropdown.Item onClick={() => handleCategoriaClick("metales")}>Metales</Dropdown.Item>
@@ -118,11 +136,9 @@ export function MyNavbar() {
         </Dropdown>
       </div>
         
-        <NavLink className="clase-link" to="/orders" activeClassName="active">
-          Órdenes
-        </NavLink>
               
       </Navbar.Collapse>
+      </>
     </Navbar>
   );
 }
