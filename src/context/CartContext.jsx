@@ -33,7 +33,7 @@ const cartReducer = (state, action) => {
     }
 
     case "RESET_CART":
-      saveCartToLocalStorage([]); 
+      saveCartToLocalStorage([]);
       return [];
 
     default:

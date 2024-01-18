@@ -1,13 +1,12 @@
-import { MyCarousel } from '../components/Carousel/Carousel';
-import { ItemList } from '../components/ItemList/ItemList';
+import { MyCarousel } from "../components/Carousel/Carousel";
+import { ItemList } from "../components/ItemList/ItemList";
 
-const HomeScreen = () => {
+export const HomeScreen = () => {
   return (
     <div className="mb-20">
-      <MyCarousel/>
-      <ItemList/>
+      <MyCarousel />
+      <ItemList />
     </div>
   );
-}
+};
 
-export default HomeScreen

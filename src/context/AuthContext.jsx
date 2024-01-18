@@ -12,7 +12,6 @@ import { useCart } from "../context/CartContext";
 const UserContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
-
   const { dispatch } = useCart();
 
   const [user, setUser] = useState({});
@@ -20,7 +19,6 @@ export const AuthContextProvider = ({ children }) => {
   const createUser = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
-
 
   const signIn = (email, password) => {
     return signInWithEmailAndPassword(auth, email, password);
@@ -31,10 +29,10 @@ export const AuthContextProvider = ({ children }) => {
     return signOut(auth);
   };
 
-    // Función para resetear el carrito
-    const resetCart = () => {
-      dispatch({ type: "RESET_CART" });
-    };
+  // Función para resetear el carrito
+  const resetCart = () => {
+    dispatch({ type: "RESET_CART" });
+  };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {

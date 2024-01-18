@@ -1,11 +1,11 @@
 import { useCart } from "../context/CartContext";
-import { Link, useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { MdEdit } from "react-icons/md";
 import { FaPaypal } from "react-icons/fa";
 import { SiMercadopago } from "react-icons/si";
 import { FaCreditCard } from "react-icons/fa";
-import { getFirestore, collection, addDoc } from 'firebase/firestore';
+import { getFirestore, collection, addDoc } from "firebase/firestore";
 
 export const PlaceOrderScreen = () => {
   const { cart, dispatch } = useCart();
@@ -33,37 +33,37 @@ export const PlaceOrderScreen = () => {
   }, []);
 
   const handlePlaceOrder = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     const orderData = {
       user: userData ? { ...userData } : null,
       items: cart.map((item) => ({
-        categoria: item.categoria, 
-        nombre: item.nombre, 
-        precio: item.precio, 
-        stock: item.stock, 
+        categoria: item.categoria,
+        nombre: item.nombre,
+        precio: item.precio,
+        stock: item.stock,
         img: item.imagen,
-        quantity: item.quantity, 
+        quantity: item.quantity,
         slug: item.slug,
       })),
       totalPrices: totalPrices,
       date: new Date().toISOString(),
     };
 
-    console.log('orderData:', orderData);
+    console.log("orderData:", orderData);
 
     const db = getFirestore();
-    
-    try {
-      const docRef = await addDoc(collection(db, 'ordenes'), orderData);
-      console.log('Orden creada con ID: ', docRef.id);
 
-      localStorage.removeItem('itemsCart');
-      localStorage.removeItem('userDataOrder');
+    try {
+      const docRef = await addDoc(collection(db, "ordenes"), orderData);
+      console.log("Orden creada con ID: ", docRef.id);
+
+      localStorage.removeItem("itemsCart");
+      localStorage.removeItem("userDataOrder");
       resetCart();
-      navigate('/orders');
+      navigate("/orders");
     } catch (error) {
-      console.log('orderData:', orderData);
-      console.error('Error al crear la orden', error);
+      console.log("orderData:", orderData);
+      console.error("Error al crear la orden", error);
     }
   };
 
@@ -224,7 +224,10 @@ export const PlaceOrderScreen = () => {
             {userData.paymentMethod === "PayPal" && (
               <div>
                 <Link to={"/order"} className="w-full">
-                  <button onClick={handlePlaceOrder} className="flex items-center justify-center h-16 gap-3 text-xl bg-amber-400 hover:bg-yellow-500 dark:bg-yellow-500 w-full p-3 my-2 font-semibold text-black italic rounded">
+                  <button
+                    onClick={handlePlaceOrder}
+                    className="flex items-center justify-center h-16 gap-3 text-xl bg-amber-400 hover:bg-yellow-500 dark:bg-yellow-500 w-full p-3 my-2 font-semibold text-black italic rounded"
+                  >
                     <FaPaypal className="h-7 w-7 text-sky-950" /> PayPal
                   </button>
                 </Link>
@@ -234,7 +237,10 @@ export const PlaceOrderScreen = () => {
             {userData.paymentMethod === "Mercado Pago" && (
               <div>
                 <Link to={"/order"} className="w-full">
-                  <button onClick={handlePlaceOrder} className="flex items-center justify-center gap-3 h-16 text-xl bg-sky-400 w-full p-3 my-2 text-white rounded font-semibold">
+                  <button
+                    onClick={handlePlaceOrder}
+                    className="flex items-center justify-center gap-3 h-16 text-xl bg-sky-400 w-full p-3 my-2 text-white rounded font-semibold"
+                  >
                     <SiMercadopago className="text-sky-950 h-9 w-9" /> Mercado
                     Pago
                   </button>
@@ -245,7 +251,10 @@ export const PlaceOrderScreen = () => {
             {userData.paymentMethod === "Transferencia/Depósito" && (
               <div>
                 <Link to={"/"} className="w-full">
-                  <button onClick={handlePlaceOrder} className="flex items-center justify-center gap-3 h-16 text-xl font-medium bg-blue-600 hover:bg-blue-500 dark:bg-yellow-500 w-full p-3 my-2 text-white rounded">
+                  <button
+                    onClick={handlePlaceOrder}
+                    className="flex items-center justify-center gap-3 h-16 text-xl font-medium bg-blue-600 hover:bg-blue-500 dark:bg-yellow-500 w-full p-3 my-2 text-white rounded"
+                  >
                     <FaCreditCard className="text-sky-950 h-9 w-9" /> Credit /
                     Debit card
                   </button>

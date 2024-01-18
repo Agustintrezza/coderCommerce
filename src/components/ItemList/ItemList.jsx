@@ -1,15 +1,15 @@
-import { useState, useEffect } from 'react';
-import { Card, Spinner } from 'flowbite-react';
-import { useCart } from '../../context/CartContext';
-import { useNavigate } from 'react-router-dom';
-import { getDocs, collection } from 'firebase/firestore';
-import { getFirestore } from '../../firebase';
+import { useState, useEffect } from "react";
+import { Card, Spinner } from "flowbite-react";
+import { useCart } from "../../context/CartContext";
+import { useNavigate } from "react-router-dom";
+import { getDocs, collection } from "firebase/firestore";
+import { getFirestore } from "../../firebase";
 
 export const ItemList = () => {
   const { cart, dispatch } = useCart();
   const navigate = useNavigate();
   const [productos, setProductos] = useState([]);
-  const [loading, setLoading] = useState(true); 
+  const [loading, setLoading] = useState(true);
 
   const isProductInCart = (slug) => {
     return cart.some((item) => item.slug === slug);
@@ -20,26 +20,28 @@ export const ItemList = () => {
   };
 
   const handleCardClick = (slug) => {
-    // console.log('Navigating to:', `/producto/${slug}`);
     navigate(`/producto/${slug}`);
   };
 
   const toggleCart = (product) => {
     if (isProductInCart(product.slug)) {
-      dispatch({ type: 'REMOVE_FROM_CART', payload: product });
+      dispatch({ type: "REMOVE_FROM_CART", payload: product });
     } else {
-      dispatch({ type: 'ADD_TO_CART', payload: product });
+      dispatch({ type: "ADD_TO_CART", payload: product });
     }
   };
 
   useEffect(() => {
     const fetchData = async () => {
       const db = getFirestore();
-      const productosCollection = collection(db, 'productos');
+      const productosCollection = collection(db, "productos");
 
       try {
         const productosSnapshot = await getDocs(productosCollection);
-        const productosData = productosSnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+        const productosData = productosSnapshot.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+        }));
         setProductos(productosData);
       } catch (error) {
         // console.error('Error al obtener los productos', error);
@@ -54,7 +56,9 @@ export const ItemList = () => {
   return (
     <div className="custom-container min-h-screen">
       <div className="">
-        <h1 className="text-5xl md:text-4xl text-center md:text-start font-bold text-sky-950">PRODUCTOS</h1>
+        <h1 className="text-5xl md:text-4xl text-center md:text-start font-bold text-sky-950">
+          PRODUCTOS
+        </h1>
       </div>
       {loading ? (
         <div className="flex flex-col items-center justify-center h-screen">
@@ -88,11 +92,13 @@ export const ItemList = () => {
                     }}
                     className={`rounded-lg px-2 py-2.5 text-center text-sm font-medium ${
                       isProductInCart(producto.slug)
-                        ? 'bg-yellow-500 text-white'
-                        : 'bg-blue-600 text-white hover:bg-yellow-500 hover:text-black focus:outline-none focus:ring-4 focus:ring-cyan-300 dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-cyan-800'
+                        ? "bg-yellow-500 text-white"
+                        : "bg-blue-600 text-white hover:bg-yellow-500 hover:text-black focus:outline-none focus:ring-4 focus:ring-cyan-300 dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-cyan-800"
                     }`}
                   >
-                    {isProductInCart(producto.slug) ? 'Quitar del carrito' : 'Agregar al carrito'}
+                    {isProductInCart(producto.slug)
+                      ? "Quitar del carrito"
+                      : "Agregar al carrito"}
                   </button>
                 </div>
               </Card>

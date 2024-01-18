@@ -5,12 +5,10 @@ import { Dropdown, Navbar, Avatar } from "flowbite-react";
 import { useMediaQuery } from "@react-hook/media-query";
 import { useState } from "react";
 
-
 export function MyNavbar() {
   const { user, logout } = UserAuth();
   const isScreenAbove968px = useMediaQuery("(min-width: 968px)");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
 
   const navigate = useNavigate();
 
@@ -52,92 +50,113 @@ export function MyNavbar() {
 
         {user ? (
           <Dropdown
-          arrowIcon={true}
-          inline
-          label={
-            <Avatar
-              alt="User settings"
-              img="https://res.cloudinary.com/djpifu0cl/image/upload/v1701584441/buddhabyn_ybmxfw.webp"
-              rounded
-            />
-          }
-        >
-      <Dropdown.Item as="a" href="https://flowbite.com/" target="_blank">
-        {userEmail && (<p>User: {userEmail}</p>)}
-      </Dropdown.Item>
-        </Dropdown>
+            arrowIcon={true}
+            inline
+            label={
+              <Avatar
+                alt="User settings"
+                img="https://res.cloudinary.com/djpifu0cl/image/upload/v1701584441/buddhabyn_ybmxfw.webp"
+                rounded
+              />
+            }
+          >
+            <Dropdown.Item>
+              {userEmail && <p>User: {userEmail}</p>}
+            </Dropdown.Item>
+          </Dropdown>
         ) : (
-        <img className="rounded-full h-10 w-10 me-4" src="https://res.cloudinary.com/djpifu0cl/image/upload/v1701584441/buddhabyn_ybmxfw.webp"/>
+          <img
+            className="rounded-full h-10 w-10 me-4"
+            src="https://res.cloudinary.com/djpifu0cl/image/upload/v1701584441/buddhabyn_ybmxfw.webp"
+          />
         )}
 
-        
-        
-        
         <Navbar.Toggle onClick={handleMenuToggle} />
       </div>
       <>
-      <Navbar.Collapse className={`flex items-center ${isMenuOpen ? "block transition-all duration-300 ease-in-out" : "hidden"} md:flex`}>
-        <NavLink
-          className={`clase-link ${
-            isScreenAbove968px ? "dark:text-white" : ""
-          }`}
-          to="/"
-          activeclassname="active"
-          exact={true.toString()}
+        <Navbar.Collapse
+          className={`flex items-center ${
+            isMenuOpen
+              ? "block transition-all duration-300 ease-in-out"
+              : "hidden"
+          } md:flex`}
         >
-          Home
-        </NavLink>
+          <NavLink
+            className={`clase-link ${
+              isScreenAbove968px ? "dark:text-white" : ""
+            }`}
+            to="/"
+            activeclassname="active"
+            exact={true.toString()}
+          >
+            Home
+          </NavLink>
 
-        
-        <NavLink className="clase-link" to="/orders" activeclassname="active">
-          Órdenes
-        </NavLink>
+          <NavLink className="clase-link" to="/orders" activeclassname="active">
+            Órdenes
+          </NavLink>
 
-        <NavLink
-          className={`clase-link ${
-            isScreenAbove968px ? "dark:text-white" : ""
-          }`}
-          to="/signin"
-          activeclassname="active"
-        >
-          {user ? (
-            <button
-              className={`${isScreenAbove968px ? "dark:text-white" : ""}`}
-              onClick={logout}
+          <NavLink
+            className={`clase-link ${
+              isScreenAbove968px ? "dark:text-white" : ""
+            }`}
+            to="/signin"
+            activeclassname="active"
+          >
+            {user ? (
+              <button
+                className={`${isScreenAbove968px ? "dark:text-white" : ""}`}
+                onClick={logout}
+              >
+                Cerrar Sesión
+              </button>
+            ) : (
+              <span
+                className={`clase-link ${
+                  isScreenAbove968px ? "dark:text-white" : ""
+                }`}
+              >
+                Sign In
+              </span>
+            )}
+          </NavLink>
+
+          {!user && (
+            <NavLink
+              className="clase-link"
+              to="/signup"
+              activeclassname="active"
             >
-              Cerrar Sesión
-            </button>
-          ) : (
-            <span
-              className={`clase-link ${
-                isScreenAbove968px ? "dark:text-white" : ""
-              }`}
-            >
-              Sign In
-            </span>
+              Sign Up
+            </NavLink>
           )}
-        </NavLink>
-        
-        {!user && (
-          <NavLink className="clase-link" to="/signup" activeclassname="active">
-          Sign Up
-        </NavLink>
 
-        )}
-
-<div className="flex justify-center mt-2 md:m-0">
-        <Dropdown color="blue" label="Categorías" dismissOnClick={false}>
-          <Dropdown.Item className="text-center" onClick={() => handleCategoriaClick("baterias")}>Baterías</Dropdown.Item>
-          <Dropdown.Item onClick={() => handleCategoriaClick("guitarras")}>Guitarras</Dropdown.Item>
-          <Dropdown.Item onClick={() => handleCategoriaClick("bajos")}>Bajos</Dropdown.Item>
-          <Dropdown.Item onClick={() => handleCategoriaClick("metales")}>Metales</Dropdown.Item>
-          <Dropdown.Item onClick={() => handleCategoriaClick("audio")}>Audio</Dropdown.Item>
-          <Dropdown.Item onClick={() => handleCategoriaClick("accesorios")}>Accesorios</Dropdown.Item>
-        </Dropdown>
-      </div>
-        
-              
-      </Navbar.Collapse>
+          <div className="flex justify-center mt-2 md:m-0">
+            <Dropdown color="blue" label="Categorías" dismissOnClick={false}>
+              <Dropdown.Item
+                className="text-center"
+                onClick={() => handleCategoriaClick("baterias")}
+              >
+                Baterías
+              </Dropdown.Item>
+              <Dropdown.Item onClick={() => handleCategoriaClick("guitarras")}>
+                Guitarras
+              </Dropdown.Item>
+              <Dropdown.Item onClick={() => handleCategoriaClick("bajos")}>
+                Bajos
+              </Dropdown.Item>
+              <Dropdown.Item onClick={() => handleCategoriaClick("metales")}>
+                Metales
+              </Dropdown.Item>
+              <Dropdown.Item onClick={() => handleCategoriaClick("audio")}>
+                Audio
+              </Dropdown.Item>
+              <Dropdown.Item onClick={() => handleCategoriaClick("accesorios")}>
+                Accesorios
+              </Dropdown.Item>
+            </Dropdown>
+          </div>
+        </Navbar.Collapse>
       </>
     </Navbar>
   );
