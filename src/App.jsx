@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 
-import { SignupScreen } from "./screens/SignupScreen.jsx";
-import { SigninScreen } from "./screens/SigninScreen.jsx";
+import SignupScreen from "./screens/SignupScreen.jsx";
+import SigninScreen from "./screens/SigninScreen.jsx";
 import { HomeScreen } from "./screens/HomeScreen.jsx";
 import { CartScreen } from "./screens/CartScreen.jsx";
 import { CategoriasScreen } from "./screens/CategoriasScreen.jsx";
@@ -22,6 +22,10 @@ import { CartProvider } from "./context/CartContext";
 
 import "./App.css";
 import "react-tippy/dist/tippy.css";
+
+
+
+
 
 
 function ScrollToTop() {

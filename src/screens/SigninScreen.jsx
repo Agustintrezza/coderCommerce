@@ -5,7 +5,7 @@ import swal from "sweetalert";
 import { FaEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
 
-export const Signin = () => {
+const Signin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -95,3 +95,4 @@ export const Signin = () => {
   );
 };
 
+export default Signin;
